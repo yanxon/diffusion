@@ -1,1 +1,1 @@
-# Simple Diffusion Calculation with LAMMPS
+## Simple Diffusion Calculation with LAMMPS
