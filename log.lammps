@@ -29,7 +29,7 @@ Created orthogonal box = (0 0 0) to (19.629 19.629 19.629)
   1 by 1 by 1 MPI processor grid
 create_atoms 1 region whole
 Created 500 atoms
-  create_atoms CPU = 0.000283957 secs
+  create_atoms CPU = 0.00030303 secs
 create_atoms 2 random 1 1001 NULL
 Created 1 atoms
   create_atoms CPU = 5.96046e-06 secs
@@ -57,7 +57,7 @@ thermo 100
 thermo_style custom step lx atoms temp pe lx ly lz press pxx pyy pzz
 thermo_modify lost ignore flush yes
 
-dump 1 all custom 100 *.chkpt id type mass x y z
+dump 1 all custom 100 movies/*.chkpt id type mass x y z
 
 run ${runtime}
 run 100000
@@ -1076,20 +1076,20 @@ Step Lx Atoms Temp PotEng Lx Ly Lz Press Pxx Pyy Pzz
    99800    19.629018      501    801.80355   -1896.8099    19.629018    19.629018    19.629018    4804.9548    5756.4203    5625.7851     3032.659 
    99900    19.629018      501    806.23586   -1897.0551    19.629018    19.629018    19.629018    5026.5833    6385.8255     5970.584    2723.3403 
   100000    19.629018      501    809.28595   -1897.2153    19.629018    19.629018    19.629018    4709.5496    6364.8676     5829.502     1934.279 
-Loop time of 71.9916 on 1 procs for 100000 steps with 501 atoms
+Loop time of 71.3141 on 1 procs for 100000 steps with 501 atoms
 
-Performance: 12.001 ns/day, 2.000 hours/ns, 1389.051 timesteps/s
+Performance: 12.115 ns/day, 1.981 hours/ns, 1402.247 timesteps/s
 99.2% CPU use with 1 MPI tasks x no OpenMP threads
 
 MPI task timing breakdown:
 Section |  min time  |  avg time  |  max time  |%varavg| %total
 ---------------------------------------------------------------
-Pair    | 69.16      | 69.16      | 69.16      |   0.0 | 96.07
-Neigh   | 0.17865    | 0.17865    | 0.17865    |   0.0 |  0.25
-Comm    | 0.74644    | 0.74644    | 0.74644    |   0.0 |  1.04
-Output  | 0.88462    | 0.88462    | 0.88462    |   0.0 |  1.23
-Modify  | 0.7655     | 0.7655     | 0.7655     |   0.0 |  1.06
-Other   |            | 0.2567     |            |       |  0.36
+Pair    | 68.468     | 68.468     | 68.468     |   0.0 | 96.01
+Neigh   | 0.17984    | 0.17984    | 0.17984    |   0.0 |  0.25
+Comm    | 0.74764    | 0.74764    | 0.74764    |   0.0 |  1.05
+Output  | 0.89309    | 0.89309    | 0.89309    |   0.0 |  1.25
+Modify  | 0.76991    | 0.76991    | 0.76991    |   0.0 |  1.08
+Other   |            | 0.2553     |            |       |  0.36
 
 Nlocal:    501 ave 501 max 501 min
 Histogram: 1 0 0 0 0 0 0 0 0 0
