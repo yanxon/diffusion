@@ -3,8 +3,8 @@ variable alat equal 3.92580364
 variable xdim equal ${alat}*5
 variable T equal 800
 variable T2 equal ${T}
-variable tstep equal 0.0001
-variable runtime equal 100000
+variable tstep equal 0.001
+variable runtime equal 1000000
 variable Srandomseed equal 1001 
 
 clear 
@@ -23,6 +23,9 @@ create_atoms 2 random 1 1001 NULL
 mass 1 106.42
 mass 2 1.
 
+group 1 id 1
+group 2 id 2
+
 # ---------- Define Interatomic Potential --------------------- 
 pair_style	eam/alloy
 pair_coeff * * PdH_zhou.eam.alloy Pd H
@@ -31,13 +34,15 @@ timestep ${tstep}
 
 # ----- perform MD -------
 velocity all create ${T2} ${Srandomseed}
-fix 1 all nvt temp ${T} ${T} 0.2
+fix 1 all nvt temp ${T} ${T} 0.1
+compute hydrogen 2 com
+compute msd 2 msd
 
 #----- end MD ------
 thermo 100 
-thermo_style custom step lx atoms temp pe lx ly lz press pxx pyy pzz
+thermo_style custom step temp c_msd[4]
 thermo_modify lost ignore flush yes
 
-dump 1 all custom 100 movies/*.chkpt id type mass x y z 
+#dump 1 all custom 100 movies/*.chkpt id type mass x y z 
 
 run ${runtime}
