@@ -15,4 +15,4 @@ After calculation is done:
 
 Dependencies:
 - LAMMPS
-- Python
+- Python 3.x
