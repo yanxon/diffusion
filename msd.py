@@ -70,7 +70,7 @@ def MSD(N):
     print(f"The diffusion coefficient is: {slope/6} A^2/ns") 
     
     plt.plot(step, m_msd, color='blue', linewidth=2, label='Mean Squared Displacement')
-    plt.plot(step, _Y, color='red', linewidth=2, label'fit')
+    plt.plot(step, _Y, color='red', linewidth=2, label='fit')
     plt.xlabel('time (ns)')
     plt.ylabel('MSD (A^2)')
     plt.title(f"D = {round(slope[0]/6, 2)} A^2/ns")
