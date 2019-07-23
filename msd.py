@@ -1,9 +1,11 @@
 import os
 import re
-import matplotlib.pyplot as plt
 import numpy as np
 import sympy
 import subprocess
+import matplotlib.pyplot as plt
+
+from sklearn.linear_model import LinearRegression as LR
 
 N = 100
 
@@ -15,7 +17,7 @@ def MSD(N):
     TEMP = []
 
     for n in range(N):
-        directory = 'hydrogen_'+str(primes[n])
+        directory = 'hydrogen_'+str(n)
         os.mkdir(directory)
 
         string_of_text = []
@@ -58,12 +60,22 @@ def MSD(N):
         TEMP.append(temp)
 
     m_msd = np.mean(MSD, axis=0)
-
     np.savetxt('results/msd_paths.txt', MSD)
-    plt.plot(step, m_msd)
+    
+    reg = LR()
+    reg.fit(step, m_msd)
+    slope = reg.coef_
+    _Y = reg.predict(X)
+
+    print(f"The diffusion coefficient is: {slope/6} A^2/ns") 
+    
+    plt.plot(step, m_msd, color='blue', linewidth=2, label='Mean Squared Displacement')
+    plt.plot(step, _Y, color='red', linewidth=2, label'fit')
     plt.xlabel('time (ns)')
     plt.ylabel('MSD (A^2)')
-    plt.savefig('results/msdvstime.png', dpi=1000)
+    plt.title(f"D = {round(slope[0]/6, 2)} A^2/ns")
+    plt.legend()
+    plt.savefig('results/msdvstime.png', dpi=800)
 
 if __name__ == '__main__':
     MSD(N)
