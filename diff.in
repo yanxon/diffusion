@@ -1,24 +1,24 @@
 # ---------- Initialize Simulation --------------------- 
-variable alat equal 3.92580364
-variable xdim equal ${alat}*5
-variable T equal 800
+variable alat equal 3.914295757
+variable xdim equal ${alat}*8
+variable T equal 600
 variable T2 equal ${T}
 variable tstep equal 0.001
 variable runtime equal 1000000
-variable Srandomseed equal 503
+variable Srandomseed equal 2129
 
-clear 
-units metal 
+clear
+units metal
 dimension 3 
 boundary p p p
-atom_style atomic 
+atom_style atomic
 
 # ---------- Create Atomistic Structure --------------------- 
 lattice fcc ${alat}
 region whole block 0 ${xdim} 0 ${xdim} 0 ${xdim} units box
 create_box 2 whole
 create_atoms 1 region whole
-create_atoms 2 random 1 1001 NULL
+create_atoms 2 random 819 ${Srandomseed} NULL
 
 group 1 type 1
 group 2 type 2
@@ -31,14 +31,14 @@ timestep ${tstep}
 
 # ----- perform MD -------
 velocity all create ${T2} ${Srandomseed}
-fix 1 all nvt temp ${T} ${T} 1
+fix 1 all npt temp ${T} ${T} 0.1 iso 0 0 1
 compute msd 2 msd
 
 #----- end MD ------
 thermo 100 
-thermo_style custom step temp c_msd[4]
+thermo_style custom step temp c_msd[4] press
 thermo_modify lost ignore flush yes
 
-dump 1 2 custom 100 hydrogen_503/*.chkpt id type mass x y z
+dump 1 2 custom 100 hydrogen/*.chkpt id type mass x y z
 
 run ${runtime}
