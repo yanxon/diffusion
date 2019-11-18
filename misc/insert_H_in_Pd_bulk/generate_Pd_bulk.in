@@ -1,0 +1,33 @@
+# ---------- Initialize Simulation --------------------- 
+variable alat equal 3.914295757
+variable xdim equal ${alat}*8
+variable T equal 600
+variable T2 equal ${T}
+variable tstep equal 0.001
+variable runtime equal 100000
+variable Srandomseed equal 2999
+
+clear
+units metal
+dimension 3
+boundary p p p
+atom_style atomic
+
+# ---------- Create Atomistic Structure --------------------- 
+lattice fcc ${alat}
+region whole block 0 ${xdim} 0 ${xdim} 0 ${xdim} units box
+create_box 1 whole
+create_atoms 1 region whole
+
+# ---------- Define Interatomic Potential --------------------- 
+pair_style	eam/alloy
+pair_coeff * * PdH_zhou.eam.alloy Pd
+timestep ${tstep}
+
+# ----- perform MD -------
+velocity all create ${T2} ${Srandomseed}
+fix 1 all npt temp ${T} ${T} 0.1 iso 0 0 1
+
+dump 1 all custom 100 Pd.dump id type x y z
+
+run 0
