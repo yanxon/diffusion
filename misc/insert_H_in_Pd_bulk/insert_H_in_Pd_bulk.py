@@ -21,7 +21,6 @@ os.remove('log.lammps')
 
 pd = open("Pd.dump", "r")
 lines = pd.readlines()
-#print(lines)
 
 no_of_Pd = int(lines[3])
 
@@ -68,6 +67,5 @@ for i in array[:819]:
 
     l = f"{atom_id} {atom_type} {positions[0]} {positions[1]} {positions[2]}\n"
     f.write(l)
-
 
 f.close()
