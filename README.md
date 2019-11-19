@@ -17,7 +17,7 @@ The calculations may take a while. If impatience, please reduce the runtime.
 
 ### Result
 
-After the simulation is done, one can view and collect the [mean square displacement](https://en.wikipedia.org/wiki/Mean_squared_displacement) in the `.log` files for each temperature. Then, the diffusivity can be calculation using the Einstein relation for Brownian motion. Finally, the activation energy (Q) can be obtained from the Arrhenius plot.
+After the simulation is done, one can view and collect the [mean square displacement](https://en.wikipedia.org/wiki/Mean_squared_displacement) in the `.log` files for each temperature. Then, the diffusivity can be calculation using the Einstein relation for Brownian motion. Finally, the activation energy (Q) can be obtained from the slope of the Arrhenius plot:
 ![alt text](https://github.com/yanxon/diffusion/blob/master/RESULTS/Arrhenius_plot.png)
 
 
