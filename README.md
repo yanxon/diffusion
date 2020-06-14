@@ -2,7 +2,7 @@
 
 
 ### Introduction
-This research is to reproduce the result in this [paper](https://www.sciencedirect.com/science/article/pii/S1359646218300824). 
+This application is to reproduce the result in this [paper](https://www.sciencedirect.com/science/article/pii/S1359646218300824). 
 
 In the paper, the authors focus on Pallalidum Hydride (PdHx) system, where x is the fractional concentration of Hydrogen atom with respect to one Palladium atom. PdHx is a metallic system that consists of many H atoms in the Pd crystal lattice. The main purpose of the paper is to inspect the hydrogen diffusivity in bulk fcc Pd. Since Hydrogen absorption in Palladium is reversible, PdHx is a promising material for hydrogen storage applications.
 
